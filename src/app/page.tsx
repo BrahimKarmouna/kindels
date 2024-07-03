@@ -13,7 +13,7 @@ function PageHome() {
     <div className="relative overflow-hidden nc-PageHome">
       <SectionIntro />
 
-      <div className="container relative my-24 space-y-24 lg:space-y-32 lg:my-32">
+      <div className="container relative mt-6 mb-24 space-y-24 lg:space-y-32 lg:mb-32 lg:mt-8">
         <div className="py-24 border-t border-b lg:py-32 border-slate-200 dark:border-slate-700">
           <SectionHowItWork />
         </div>

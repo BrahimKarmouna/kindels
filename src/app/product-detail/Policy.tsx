@@ -34,7 +34,7 @@ const A_FEATURES = [
   },
   {
     color: "bg-green-50",
-    name: "Nationwide Delivery",
+    name: "Tous le Maroc",
     desc: "Fast delivery nationwide.",
     svg: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -62,7 +62,7 @@ const A_FEATURES = [
 
 const Policy = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 relative">
+    <div className="relative grid grid-cols-1 gap-3 sm:grid-cols-2">
       {A_FEATURES.map((item, index) => {
         return (
           <div
@@ -78,8 +78,8 @@ const Policy = () => {
         );
       })}
 
-      {/* <div className="absolute inset-x-0 border-t top-1/2 -translate-y-1/2 border-slate-300"></div>
-      <div className="absolute inset-y-0 border-l left-1/2 -translate-x-1/2 border-slate-300"></div> */}
+      {/* <div className="absolute inset-x-0 -translate-y-1/2 border-t top-1/2 border-slate-300"></div>
+      <div className="absolute inset-y-0 -translate-x-1/2 border-l left-1/2 border-slate-300"></div> */}
     </div>
   );
 };
