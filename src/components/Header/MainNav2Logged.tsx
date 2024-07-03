@@ -39,3 +39,4 @@ const MainNav2Logged: FC<MainNav2LoggedProps> = () => {
 };
 
 export default MainNav2Logged;
+
