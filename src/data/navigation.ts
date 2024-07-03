@@ -180,37 +180,21 @@ const OTHER_PAGE_CHILD: NavItemType[] = [
 export const NAVIGATION_DEMO_2: NavItemType[] = [
   {
     id: ncNanoId(),
-    href: "/collection",
-    name: "Men",
+    href: "/",
+    name: "page d'accueil",
   },
   {
     id: ncNanoId(),
-    href: "/collection-2",
-    name: "Women",
+    href: "/about",
+    name: "qui sommes nous",
   },
   {
     id: ncNanoId(),
-    href: "/collection",
-    name: "Beauty",
+    href: "/AboutUs",
+    name: "Contactez-nous",
   },
 
-  {
-    id: ncNanoId(),
-    href: "/collection-2",
-    name: "Sport",
-  },
-  {
-    id: ncNanoId(),
-    href: "/collection",
-    name: "Templates",
-    type: "megaMenu",
-    children: MEGAMENU_TEMPLATES,
-  },
-  {
-    id: ncNanoId(),
-    href: "/search",
-    name: "Explore",
-    type: "dropdown",
-    children: OTHER_PAGE_CHILD,
-  },
+
+
+
 ];

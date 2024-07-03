@@ -7,7 +7,6 @@ import BackgroundSection from "@/components/BackgroundSection/BackgroundSection"
 import SectionHero from "./SectionHero";
 import SectionClientSay from "@/components/SectionClientSay/SectionClientSay";
 import SectionPromo3 from "@/components/SectionPromo3";
-
 const PageAbout = ({}) => {
   return (
     <div className={`nc-PageAbout overflow-hidden relative`}>
