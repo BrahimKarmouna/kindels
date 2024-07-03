@@ -151,92 +151,6 @@ const ProductCard: FC<ProductCardProps> = ({
     return "border-transparent";
   };
 
-  const renderVariants = () => {
-    if (!variants || !variants.length || !variantType) {
-      return null;
-    }
-
-    if (variantType === "color") {
-      return (
-        <div className="flex space-x-1">
-          {variants.map((variant, index) => (
-            <div
-              key={index}
-              onClick={() => setVariantActive(index)}
-              className={`relative w-6 h-6 rounded-full overflow-hidden z-10 border cursor-pointer ${
-                variantActive === index
-                  ? getBorderClass(variant.color)
-                  : "border-transparent"
-              }`}
-              title={variant.name}
-            >
-              <div
-                className={`absolute inset-0.5 rounded-full z-0 ${variant.color}`}
-              ></div>
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    return (
-      <div className="flex ">
-        {variants.map((variant, index) => (
-          <div
-            key={index}
-            onClick={() => setVariantActive(index)}
-            className={`relative w-11 h-6 rounded-full overflow-hidden z-10 border cursor-pointer ${
-              variantActive === index
-                ? "border-black dark:border-slate-300"
-                : "border-transparent"
-            }`}
-            title={variant.name}
-          >
-            <div
-              className="absolute inset-0.5 rounded-full overflow-hidden z-0 bg-cover"
-              style={{
-                backgroundImage: `url(${
-                  // @ts-ignore
-                  typeof variant.thumbnail?.src === "string"
-                    ? // @ts-ignore
-                      variant.thumbnail?.src
-                    : typeof variant.thumbnail === "string"
-                    ? variant.thumbnail
-                    : ""
-                })`,
-              }}
-            ></div>
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  const renderGroupButtons = () => {
-    return (
-      <div className="absolute bottom-0 flex justify-center invisible transition-all opacity-0 group-hover:bottom-4 inset-x-1 group-hover:opacity-100 group-hover:visible">
-        <ButtonPrimary
-          className="shadow-lg"
-          fontSize="text-xs"
-          sizeClass="py-2 px-4"
-          onClick={() => notifyAddTocart({ size: "XL" })}
-        >
-          <BagIcon className="w-3.5 h-3.5 mb-0.5" />
-          <span className="ms-1">Add to bag</span>
-        </ButtonPrimary>
-        <ButtonSecondary
-          className="ms-1.5 bg-white hover:!bg-gray-100 hover:text-slate-900 transition-colors shadow-lg"
-          fontSize="text-xs"
-          sizeClass="py-2 px-4"
-          onClick={() => setShowModalQuickView(true)}
-        >
-          <ArrowsPointingOutIcon className="w-3.5 h-3.5" />
-          <span className="ms-1">Quick view</span>
-        </ButtonSecondary>
-      </div>
-    );
-  };
-
   const renderSizeList = () => {
     if (!sizes || !sizes.length) {
       return null;
@@ -278,8 +192,6 @@ const ProductCard: FC<ProductCardProps> = ({
             />
           </Link>
           <ProductStatus status={status} />
-
-          {sizes ? renderSizeList() : renderGroupButtons()}
         </div>
 
         <div className="space-y-4 px-2.5 pt-5 pb-2.5">
@@ -297,7 +209,7 @@ const ProductCard: FC<ProductCardProps> = ({
             <div className="flex items-center mb-0.5">
               <StarIcon className="w-5 h-5 pb-[1px] text-amber-400" />
               <span className="text-sm ms-1 text-slate-500 dark:text-slate-400">
-                {rating || ""} ({numberOfReviews || 0} reviews)
+                {rating || ""} ({numberOfReviews || 0} avis)
               </span>
             </div>
           </div>
