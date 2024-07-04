@@ -11,14 +11,14 @@ import NcImage from "@/shared/NcImage/NcImage";
 
 export interface ProductCardProps {
   className?: string;
-  data?: Product;
+  data: Product;
   isLiked?: boolean;
 }
 
 const ProductCard: FC<ProductCardProps> = ({
   className = "",
-  data = PRODUCTS[0],
-}) => {
+  data 
+}:ProductCardProps) => {
   const { name, price, description, status, image, rating, numberOfReviews } =
     data;
 
@@ -29,10 +29,10 @@ const ProductCard: FC<ProductCardProps> = ({
       <div
         className={`nc-ProductCard relative flex flex-col bg-transparent ${className}`}
       >
-        <Link href={"/product-detail"} className="absolute inset-0"></Link>
+        <Link href={`/product-detail?id=${data.id-1}`} className="absolute inset-0"></Link>
 
         <div className="relative flex-shrink-0 overflow-hidden bg-slate-50 dark:bg-slate-300 rounded-3xl z-1 group">
-          <Link href={"/product-detail"} className="block">
+          <Link href={`/product-detail?id=${data.id-1}`} className="block">
             <NcImage
               containerClassName="flex aspect-w-11 aspect-h-12 w-full h-0"
               src={image}

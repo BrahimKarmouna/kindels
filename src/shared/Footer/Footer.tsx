@@ -16,7 +16,6 @@ const widgetMenus: WidgetFooterMenu[] = [
     title: "Getting started",
     menus: [
       { href: "/", label: "Accueil" },
-      { href: "/about", label: "À Propos" },
       { href: "/contact", label: "Contact" },
     ],
   },
