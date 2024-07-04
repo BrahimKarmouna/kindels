@@ -1,23 +1,24 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { Transition } from "@/app/headlessui";
 import Prices from "@/components/Prices";
-import { PRODUCTS } from "@/data/data";
+import { PRODUCTS, Product } from "@/data/data";
 import Image, { StaticImageData } from "next/image";
 
 interface Props {
+  product: Product;
   show: boolean;
   productImage: string | StaticImageData;
-
+  index: number;
   qualitySelected: number;
 }
 
 const NotifyAddTocart: FC<Props> = ({
   show,
   productImage,
-
+  index,
   qualitySelected,
 }) => {
-  const { name, price, variants } = PRODUCTS[0];
+  const { name, price } = PRODUCTS[index];
 
   const renderProductCartOnNotify = () => {
     return (
@@ -77,7 +78,7 @@ const NotifyAddTocart: FC<Props> = ({
       <p className="block text-base font-semibold leading-none">
         Added to cart!
       </p>
-      <hr className="my-4  border-slate-200 dark:border-slate-700" />
+      <hr className="my-4 border-slate-200 dark:border-slate-700" />
       {renderProductCartOnNotify()}
     </Transition>
   );

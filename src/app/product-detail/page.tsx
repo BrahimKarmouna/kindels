@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 import LikeButton from "@/components/LikeButton";
 import { StarIcon } from "@heroicons/react/24/solid";
@@ -18,12 +18,13 @@ import toast from "react-hot-toast";
 import SectionSliderProductCard from "@/components/SectionSliderProductCard";
 import detail1JPG from "@/images/products/detail1.jpg";
 import detail2JPG from "@/images/products/detail2.jpg";
+import { CartContext } from "@/utils/cart-provider";
 import detail3JPG from "@/images/products/detail3.jpg";
 import Policy from "./Policy";
-
 import NotifyAddTocart from "@/components/NotifyAddTocart";
 import Image from "next/image";
 import AccordionInfo from "@/components/AccordionInfo";
+import CartItem from "@/utils/CartItem";
 
 const LIST_IMAGES_DEMO = [detail1JPG, detail2JPG, detail3JPG];
 
@@ -33,13 +34,44 @@ const ProductDetailPage = ({
   searchParams: { id?: number };
 }) => {
   const { status, image } = PRODUCTS[searchParams.id ?? 0];
+  const { dataFromStorage, setDataFromStorage } = useContext(CartContext);
 
   const [qualitySelected, setQualitySelected] = useState(1);
 
-  const notifyAddTocart = () => {
+  const notifyAddTocart = (
+    setDataFromCart:
+      | React.Dispatch<React.SetStateAction<CartItem[]>>
+      | undefined,
+    dataFromStorage: CartItem[] | undefined
+  ) => {
+    setDataFromCart &&
+      setDataFromCart((prevCart) =>
+        prevCart
+          ? [
+              ...prevCart,
+              {
+                count: qualitySelected,
+                product: PRODUCTS[searchParams.id ?? 0],
+              },
+            ]
+          : []
+      );
+    dataFromStorage &&
+      localStorage.setItem(
+        "cart",
+        JSON.stringify([
+          ...dataFromStorage,
+          {
+            count: qualitySelected,
+            product: PRODUCTS[searchParams.id ?? 0],
+          },
+        ])
+      );
     toast.custom(
       (t) => (
         <NotifyAddTocart
+          product={PRODUCTS[searchParams.id ?? 0]}
+          index={searchParams.id ?? 0}
           productImage={image}
           qualitySelected={qualitySelected}
           show={t.visible}
@@ -143,7 +175,7 @@ const ProductDetailPage = ({
           </div>
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
-            onClick={notifyAddTocart}
+            onClick={() => notifyAddTocart(setDataFromStorage, dataFromStorage)}
           >
             <BagIcon className="hidden sm:inline-block w-5 h-5 mb-0.5" />
             <span className="ml-3">Add to cart</span>

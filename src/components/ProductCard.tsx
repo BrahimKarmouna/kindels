@@ -6,8 +6,6 @@ import { Product, PRODUCTS } from "@/data/data";
 import { StarIcon } from "@heroicons/react/24/solid";
 import ModalQuickView from "./ModalQuickView";
 import ProductStatus from "./ProductStatus";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import NcImage from "@/shared/NcImage/NcImage";
 
