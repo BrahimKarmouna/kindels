@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import Prices from "./Prices";
 import { Product, PRODUCTS } from "@/data/data";
 import { StarIcon } from "@heroicons/react/24/solid";
@@ -8,6 +8,7 @@ import ModalQuickView from "./ModalQuickView";
 import ProductStatus from "./ProductStatus";
 import Link from "next/link";
 import NcImage from "@/shared/NcImage/NcImage";
+import { CartContext } from "@/utils/cart-provider";
 
 export interface ProductCardProps {
   className?: string;

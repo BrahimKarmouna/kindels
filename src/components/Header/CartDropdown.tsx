@@ -3,23 +3,26 @@
 import { Popover, Transition } from "@/app/headlessui";
 import Prices from "@/components/Prices";
 import { Product, PRODUCTS } from "@/data/data";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 import ButtonSecondary from "@/shared/Button/ButtonSecondary";
 import Image from "next/image";
 import Link from "next/link";
+import { CartContext } from "@/utils/cart-provider";
 
 export default function CartDropdown() {
+  const { dataFromStorage, setDataFromStorage } = useContext(CartContext);
+
   const renderProduct = (item: Product, index: number, close: () => void) => {
     const { name, price, image } = item;
     return (
       <div key={index} className="flex py-5 last:pb-0">
-        <div className="relative h-24 w-20 flex-shrink-0 overflow-hidden rounded-xl bg-slate-100">
+        <div className="relative flex-shrink-0 w-20 h-24 overflow-hidden rounded-xl bg-slate-100">
           <Image
             fill
             src={image}
             alt={name}
-            className="h-full w-full object-contain object-center"
+            className="object-contain object-center w-full h-full"
           />
           <Link
             onClick={close}
@@ -28,7 +31,7 @@ export default function CartDropdown() {
           />
         </div>
 
-        <div className="ml-4 flex flex-1 flex-col">
+        <div className="flex flex-col flex-1 ml-4">
           <div>
             <div className="flex justify-between ">
               <div>
@@ -39,20 +42,39 @@ export default function CartDropdown() {
                 </h3>
                 <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   <span>{`Natural`}</span>
-                  <span className="mx-2 border-l border-slate-200 dark:border-slate-700 h-4"></span>
+                  <span className="h-4 mx-2 border-l border-slate-200 dark:border-slate-700"></span>
                   <span>{"XL"}</span>
                 </p>
               </div>
               <Prices price={price} className="mt-0.5" />
             </div>
           </div>
-          <div className="flex flex-1 items-end justify-between text-sm">
+          <div className="flex items-end justify-between flex-1 text-sm">
             <p className="text-gray-500 dark:text-slate-400">{`Qty 1`}</p>
 
             <div className="flex">
               <button
                 type="button"
                 className="font-medium text-primary-6000 dark:text-primary-500 "
+                onClick={() => {
+                  setDataFromStorage &&
+                    setDataFromStorage((prevCart) =>
+                      prevCart
+                        ? prevCart.filter(
+                            (i) => i.product.description !== item.description
+                          )
+                        : []
+                    );
+                  dataFromStorage &&
+                    localStorage.setItem(
+                      "cart",
+                      JSON.stringify(
+                        dataFromStorage.filter(
+                          (i) => i.product.description !== item.description
+                        )
+                      )
+                    );
+                }}
               >
                 Remove
               </button>
@@ -72,9 +94,11 @@ export default function CartDropdown() {
                 ${open ? "" : "text-opacity-90"}
                  group w-10 h-10 sm:w-12 sm:h-12 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 relative`}
           >
-            <div className="w-3.5 h-3.5 flex items-center justify-center bg-primary-500 absolute top-1.5 right-1.5 rounded-full text-[10px] leading-none text-white font-medium">
-              <span className="mt-[1px]">3</span>
-            </div>
+            {dataFromStorage.length > 0 && (
+              <div className="w-3.5 h-3.5 flex items-center justify-center bg-primary-500 absolute top-1.5 right-1.5 rounded-full text-[10px] leading-none text-white font-medium">
+                <span className="mt-[1px]">{dataFromStorage.length}</span>
+              </div>
+            )}
             <svg
               className="w-6 h-6"
               viewBox="0 0 24 24"
@@ -115,7 +139,7 @@ export default function CartDropdown() {
               />
             </svg>
 
-            <Link className="block md:hidden absolute inset-0" href={"/cart"} />
+            <Link className="absolute inset-0 block md:hidden" href={"/cart"} />
           </Popover.Button>
           <Transition
             as={Fragment}
@@ -127,27 +151,37 @@ export default function CartDropdown() {
             leaveTo="opacity-0 translate-y-1"
           >
             <Popover.Panel className="hidden md:block absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 -right-28 sm:right-0 sm:px-0">
-              <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 dark:ring-white/10">
+              <div className="overflow-hidden shadow-lg rounded-2xl ring-1 ring-black/5 dark:ring-white/10">
                 <div className="relative bg-white dark:bg-neutral-800">
                   <div className="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
                     <h3 className="text-xl font-semibold">Shopping cart</h3>
                     <div className="divide-y divide-slate-100 dark:divide-slate-700">
-                      {[PRODUCTS[0], PRODUCTS[1], PRODUCTS[2]].map(
-                        (item, index) => renderProduct(item, index, close)
+                      {dataFromStorage.length === 0 && (
+                        <h3 className="my-4 text-lg font-medium text-center">
+                          le panier est vide
+                        </h3>
+                      )}
+                      {dataFromStorage.map((item, index) =>
+                        renderProduct(item.product, index, close)
                       )}
                     </div>
                   </div>
-                  <div className="bg-neutral-50 dark:bg-slate-900 p-5">
+                  <div className="p-5 bg-neutral-50 dark:bg-slate-900">
                     <p className="flex justify-between font-semibold text-slate-900 dark:text-slate-100">
                       <span>
                         <span>Subtotal</span>
-                        <span className="block text-sm text-slate-500 dark:text-slate-400 font-normal">
+                        <span className="block text-sm font-normal text-slate-500 dark:text-slate-400">
                           Shipping and taxes calculated at checkout.
                         </span>
                       </span>
-                      <span className="">$299.00</span>
+                      <span className="">
+                        {dataFromStorage?.reduce((prev, curr) => {
+                          return prev + curr.product.price * curr.count;
+                        }, 0)}{" "}
+                        DH
+                      </span>
                     </p>
-                    <div className="flex space-x-2 mt-5">
+                    <div className="flex mt-5 space-x-2">
                       <ButtonSecondary
                         href="/cart"
                         className="flex-1 border border-slate-200 dark:border-slate-700"
@@ -155,13 +189,24 @@ export default function CartDropdown() {
                       >
                         View cart
                       </ButtonSecondary>
-                      <ButtonPrimary
-                        href="/checkout"
-                        onClick={close}
-                        className="flex-1"
-                      >
-                        Check out
-                      </ButtonPrimary>
+
+                      {(dataFromStorage?.reduce((prev, curr) => {
+                        return prev + curr.product.price * curr.count;
+                      }, 0) ?? 0) !== 0 ? (
+                        <ButtonPrimary
+                          href="/checkout"
+                          className="flex-1 border border-slate-200 dark:border-slate-700"
+                        >
+                          Checkout
+                        </ButtonPrimary>
+                      ) : (
+                        <ButtonPrimary
+                          disabled
+                          className="flex-1 border border-slate-200 dark:border-slate-700 bg-neutral-600"
+                        >
+                          Checkout
+                        </ButtonPrimary>
+                      )}
                     </div>
                   </div>
                 </div>

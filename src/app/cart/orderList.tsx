@@ -38,86 +38,9 @@ function OrderList() {
                   <Link href="/product-detail">{name}</Link>
                 </h3>
                 <div className="mt-1.5 sm:mt-2.5 flex text-sm text-slate-600 dark:text-slate-300">
-                  <div className="flex items-center space-x-1.5">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M7.01 18.0001L3 13.9901C1.66 12.6501 1.66 11.32 3 9.98004L9.68 3.30005L17.03 10.6501C17.4 11.0201 17.4 11.6201 17.03 11.9901L11.01 18.0101C9.69 19.3301 8.35 19.3301 7.01 18.0001Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M8.35 1.94995L9.69 3.28992"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M2.07 11.92L17.19 11.26"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3 22H16"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M18.85 15C18.85 15 17 17.01 17 18.24C17 19.26 17.83 20.09 18.85 20.09C19.87 20.09 20.7 19.26 20.7 18.24C20.7 17.01 18.85 15 18.85 15Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-
-                    <span>{`Black`}</span>
-                  </div>
+                  <div className="flex items-center space-x-1.5"></div>
                   <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
-                  <div className="flex items-center space-x-1.5">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M21 9V3H15"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3 15V21H9"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M21 3L13.5 10.5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M10.5 13.5L3 21"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-
-                    <span>{`2XL`}</span>
-                  </div>
+                  <div className="flex items-center space-x-1.5"></div>
                 </div>
 
                 <div className="relative flex justify-between w-full mt-3 sm:hidden">
@@ -134,6 +57,7 @@ function OrderList() {
                     <option value="6">6</option>
                     <option value="7">7</option>
                   </select>
+                  0
                   <Prices
                     contentClass="py-1 px-2 md:py-1.5 md:px-2.5 text-sm font-medium h-full"
                     price={price}
@@ -142,7 +66,33 @@ function OrderList() {
               </div>
 
               <div className="relative hidden text-center sm:block">
-                <NcInputNumber className="relative z-10" />
+                <NcInputNumber
+                  className="relative z-10"
+                  onChange={(v) => {
+                    setDataFromStorage &&
+                      setDataFromStorage((prevCart) =>
+                        prevCart
+                          ? prevCart.map((i) => {
+                              if (i.product.description === item.description) {
+                                i.count = v;
+                                return i;
+                              } else {
+                                return i;
+                              }
+                            })
+                          : []
+                      );
+                    dataFromStorage &&
+                      localStorage.setItem(
+                        "cart",
+                        JSON.stringify(
+                          dataFromStorage.filter(
+                            (i) => i.product.description !== item.description
+                          )
+                        )
+                      );
+                  }}
+                />
               </div>
 
               <div className="justify-end flex-1 hidden sm:flex">
@@ -152,10 +102,6 @@ function OrderList() {
           </div>
 
           <div className="flex items-end justify-between pt-4 mt-auto text-sm">
-            {Math.random() > 0.6
-              ? renderStatusSoldout()
-              : renderStatusInstock()}
-
             <a
               href="##"
               className="relative z-10 flex items-center mt-3 text-sm font-medium text-primary-6000 hover:text-primary-500 "

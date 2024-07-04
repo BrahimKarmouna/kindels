@@ -44,41 +44,48 @@ const ProductDetailPage = ({
       | undefined,
     dataFromStorage: CartItem[] | undefined
   ) => {
-    setDataFromCart &&
-      setDataFromCart((prevCart) =>
-        prevCart
-          ? [
-              ...prevCart,
-              {
-                count: qualitySelected,
-                product: PRODUCTS[searchParams.id ?? 0],
-              },
-            ]
-          : []
+    if (
+      !dataFromStorage?.find(
+        (x) =>
+          x.product.description === PRODUCTS[searchParams.id ?? 0].description
+      )
+    ) {
+      setDataFromCart &&
+        setDataFromCart((prevCart) =>
+          prevCart
+            ? [
+                ...prevCart,
+                {
+                  count: qualitySelected,
+                  product: PRODUCTS[searchParams.id ?? 0],
+                },
+              ]
+            : []
+        );
+      dataFromStorage &&
+        localStorage.setItem(
+          "cart",
+          JSON.stringify([
+            ...dataFromStorage,
+            {
+              count: qualitySelected,
+              product: PRODUCTS[searchParams.id ?? 0],
+            },
+          ])
+        );
+      toast.custom(
+        (t) => (
+          <NotifyAddTocart
+            product={PRODUCTS[searchParams.id ?? 0]}
+            index={searchParams.id ?? 0}
+            productImage={image}
+            qualitySelected={qualitySelected}
+            show={t.visible}
+          />
+        ),
+        { position: "top-right", id: "nc-product-notify", duration: 3000 }
       );
-    dataFromStorage &&
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([
-          ...dataFromStorage,
-          {
-            count: qualitySelected,
-            product: PRODUCTS[searchParams.id ?? 0],
-          },
-        ])
-      );
-    toast.custom(
-      (t) => (
-        <NotifyAddTocart
-          product={PRODUCTS[searchParams.id ?? 0]}
-          index={searchParams.id ?? 0}
-          productImage={image}
-          qualitySelected={qualitySelected}
-          show={t.visible}
-        />
-      ),
-      { position: "top-right", id: "nc-product-notify", duration: 3000 }
-    );
+    }
   };
 
   const renderStatus = () => {
@@ -176,9 +183,24 @@ const ProductDetailPage = ({
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
             onClick={() => notifyAddTocart(setDataFromStorage, dataFromStorage)}
+            disabled={
+              !!dataFromStorage?.find(
+                (x) =>
+                  x.product.description ===
+                  PRODUCTS[searchParams.id ?? 0].description
+              )
+            }
           >
             <BagIcon className="hidden sm:inline-block w-5 h-5 mb-0.5" />
-            <span className="ml-3">Add to cart</span>
+            {!dataFromStorage?.find(
+              (x) =>
+                x.product.description ===
+                PRODUCTS[searchParams.id ?? 0].description
+            ) ? (
+              <span className="ml-3">Add to cart</span>
+            ) : (
+              <span className="ml-3 ">Added</span>
+            )}
           </ButtonPrimary>
         </div>
 
