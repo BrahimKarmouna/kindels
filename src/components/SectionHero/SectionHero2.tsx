@@ -131,32 +131,6 @@ const SectionHero2: FC<SectionHero2Props> = ({ className = "" }) => {
                 {item.heading}
               </h2>
             </div>
-
-            <ButtonPrimary
-              className="nc-SectionHero2Item__button dark:bg-slate-900"
-              sizeClass="py-3 px-6 sm:py-5 sm:px-9"
-              href={item.btnLink}
-            >
-              <span>{item.btnText}</span>
-              <span>
-                <svg className="w-5 h-5 ms-2.5" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M22 22L20 20"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </ButtonPrimary>
           </div>
           <div className="top-0 bottom-0 w-full max-w-2xl mt-10 lg:mt-0 lg:absolute end-0 rtl:-end-28 xl:max-w-3xl 2xl:max-w-4xl">
             <Image

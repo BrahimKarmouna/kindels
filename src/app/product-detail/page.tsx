@@ -21,23 +21,21 @@ import detail2JPG from "@/images/products/detail2.jpg";
 import detail3JPG from "@/images/products/detail3.jpg";
 import Policy from "./Policy";
 
-import ModalViewAllReviews from "./ModalViewAllReviews";
 import NotifyAddTocart from "@/components/NotifyAddTocart";
 import Image from "next/image";
 import AccordionInfo from "@/components/AccordionInfo";
 
 const LIST_IMAGES_DEMO = [detail1JPG, detail2JPG, detail3JPG];
 
-const ProductDetailPage = () => {
-  const { sizes, variants, status, allOfSizes, image } = PRODUCTS[0];
-  //
-  const [variantActive, setVariantActive] = useState(0);
-  const [sizeSelected, setSizeSelected] = useState(sizes ? sizes[0] : "");
-  const [qualitySelected, setQualitySelected] = useState(1);
-  const [isOpenModalViewAllReviews, setIsOpenModalViewAllReviews] =
-    useState(false);
+const ProductDetailPage = ({
+  searchParams,
+}: {
+  searchParams: { id?: number };
+}) => {
+  const { status, image } = PRODUCTS[searchParams.id ?? 0];
 
-  //
+  const [qualitySelected, setQualitySelected] = useState(1);
+
   const notifyAddTocart = () => {
     toast.custom(
       (t) => (
@@ -45,8 +43,6 @@ const ProductDetailPage = () => {
           productImage={image}
           qualitySelected={qualitySelected}
           show={t.visible}
-          sizeSelected={sizeSelected}
-          variantActive={variantActive}
         />
       ),
       { position: "top-right", id: "nc-product-notify", duration: 3000 }
@@ -100,14 +96,14 @@ const ProductDetailPage = () => {
         {/* ---------- 1 HEADING ----------  */}
         <div>
           <h2 className="text-2xl font-semibold sm:text-3xl">
-            Heavy Weight Shoes
+            {PRODUCTS[searchParams.id ?? 0].description}
           </h2>
 
           <div className="flex items-center mt-5 space-x-4 sm:space-x-5">
             {/* <div className="flex text-xl font-semibold">$112.00</div> */}
             <Prices
               contentClass="py-1 px-2 md:py-1.5 md:px-3 text-lg font-semibold"
-              price={112}
+              price={PRODUCTS[searchParams.id ?? 0].price}
             />
 
             <div className="border-l h-7 border-slate-300 dark:border-slate-700"></div>
@@ -119,10 +115,10 @@ const ProductDetailPage = () => {
               >
                 <StarIcon className="w-5 h-5 pb-[1px] text-yellow-400" />
                 <div className="ml-1.5 flex">
-                  <span>4.9</span>
+                  <span>{PRODUCTS[searchParams.id ?? 0].rating}</span>
                   <span className="block mx-2">·</span>
                   <span className="underline text-slate-600 dark:text-slate-400">
-                    142 reviews
+                    {PRODUCTS[searchParams.id ?? 0].numberOfReviews} reviews
                   </span>
                 </div>
               </a>
@@ -159,7 +155,7 @@ const ProductDetailPage = () => {
         {/*  */}
 
         {/* ---------- 5 ----------  */}
-        <AccordionInfo />
+        <AccordionInfo content={PRODUCTS[searchParams.id ?? 0].content} />
 
         {/* ---------- 6 ----------  */}
         <div className="hidden xl:block">
@@ -182,7 +178,8 @@ const ProductDetailPage = () => {
                 <Image
                   fill
                   sizes="(max-width: 640px) 100vw, 33vw"
-                  src={LIST_IMAGES_DEMO[0]}
+                  src={image}
+                  quality={100}
                   className="object-cover w-full rounded-2xl"
                   alt="product detail 1"
                 />
@@ -236,10 +233,6 @@ const ProductDetailPage = () => {
       </main>
 
       {/* MODAL VIEW ALL REVIEW */}
-      <ModalViewAllReviews
-        show={isOpenModalViewAllReviews}
-        onCloseModalViewAllReviews={() => setIsOpenModalViewAllReviews(false)}
-      />
     </div>
   );
 };

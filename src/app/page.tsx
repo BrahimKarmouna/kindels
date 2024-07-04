@@ -1,8 +1,6 @@
 import React from "react";
 import SectionHowItWork from "@/components/SectionHowItWork/SectionHowItWork";
 
-import SectionHero2 from "@/components/SectionHero/SectionHero2";
-
 import SectionClientSay from "@/components/SectionClientSay/SectionClientSay";
 
 import SectionGridFeatureItems from "@/components/SectionGridFeatureItems";
