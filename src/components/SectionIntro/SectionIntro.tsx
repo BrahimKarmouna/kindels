@@ -5,7 +5,7 @@ import candle from "@/images/candles/1.jpg";
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 function SectionIntro() {
   return (
-    <div className="container mx-auto bg-[#E3FFE6]">
+    <div className="container mx-auto bg-[white]">
       <div className="grid w-full grid-cols-6 py-8 px-2 h-[500px] ">
         <div className="flex flex-col justify-center col-span-3">
           <div className="">

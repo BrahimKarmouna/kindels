@@ -183,11 +183,7 @@ export const NAVIGATION_DEMO_2: NavItemType[] = [
     href: "/",
     name: "page d'accueil",
   },
-  {
-    id: ncNanoId(),
-    href: "/about",
-    name: "qui sommes nous",
-  },
+
   {
     id: ncNanoId(),
     href: "/AboutUs",
