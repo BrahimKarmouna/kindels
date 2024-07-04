@@ -186,7 +186,7 @@ export const NAVIGATION_DEMO_2: NavItemType[] = [
 
   {
     id: ncNanoId(),
-    href: "/AboutUs",
+    href: "/contact",
     name: "Contactez-nous",
   },
 
