@@ -24,7 +24,7 @@ const SectionSliderProductCard: FC<SectionSliderProductCardProps> = ({
   headingClassName,
   heading,
   subHeading = "REY backpacks & bags",
-  data = PRODUCTS.filter((_, i) => i < 8 && i > 2),
+  data = PRODUCTS.filter((_, i) => i < 8 && i > 2) ?? [],
 }) => {
   const sliderRef = useRef(null);
 
@@ -82,7 +82,7 @@ const SectionSliderProductCard: FC<SectionSliderProductCardProps> = ({
         </Heading>
         <div className="glide__track" data-glide-el="track">
           <ul className="glide__slides">
-            {data.map((item, index) => (
+            {data?.map((item, index) => (
               <li key={index} className={`glide__slide ${itemClassName}`}>
                 <ProductCard data={item} />
               </li>

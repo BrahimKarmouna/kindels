@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import twFocusClass from "@/utils/twFocusClass";
+import SwitchDarkMode from "../SwitchDarkMode/SwitchDarkMode";
 
 export interface NavItemProps {
   className?: string;
@@ -19,8 +20,9 @@ const NavItem: FC<NavItemProps> = ({
   renderX,
 }) => {
   return (
-    <li className="nc-NavItem relative" data-nc-id="NavItem">
+    <li className="relative nc-NavItem" data-nc-id="NavItem">
       {renderX && renderX}
+
       <button
         className={`block !leading-none font-medium whitespace-nowrap ${className} ${radius} ${
           isActive

@@ -2,6 +2,7 @@ import Logo from "@/shared/Logo/Logo";
 import SocialsList1 from "@/shared/SocialsList1/SocialsList1";
 import { CustomLink } from "@/data/types";
 import React from "react";
+import Link from "next/link";
 
 export interface WidgetFooterMenu {
   id: string;
@@ -24,19 +25,21 @@ const widgetMenus: WidgetFooterMenu[] = [
 const Footer: React.FC = () => {
   const renderWidgetMenuItem = (menu: WidgetFooterMenu, index: number) => {
     return (
-      <div key={index} className="text-sm lg:col-span-2 ">
-        <ul className="flex items-center justify-between mt-1">
+      <div
+        key={index}
+        className="flex items-center w-full col-span-2 text-sm justify-evenly lg:col-span-2 md:ms-10 md:w-auto"
+      >
+        <ul className="flex items-center justify-between w-full mt-1">
           {menu.menus.map((item, index) => (
             <li key={index}>
-              <a
+              <Link
                 key={index}
                 className="text-neutral-6000 dark:text-neutral-300 hover:text-black dark:hover:text-white"
                 href={item.href}
-                target="_blank"
                 rel="noopener noreferrer"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -47,7 +50,7 @@ const Footer: React.FC = () => {
   return (
     <div className="relative py-4 border-t nc-Footer lg:pt-4 lg:pb-4 border-neutral-200 dark:border-neutral-700">
       <div className="container grid grid-cols-2 gap-y-10 gap-x-5 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10 ">
-        <div className="grid grid-cols-4 col-span-2 gap-5 md:col-span-4 lg:md:col-span-1 lg:flex lg:flex-col">
+        <div className="flex items-center justify-between col-span-2 gap-5 md:col-span-4 lg:md:col-span-1 md:justify-normal">
           <div className="col-span-2 md:col-span-1">
             <Logo />
           </div>

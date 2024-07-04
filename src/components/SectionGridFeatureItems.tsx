@@ -5,7 +5,7 @@ import { Product, PRODUCTS } from "@/data/data";
 
 //
 export interface SectionGridFeatureItemsProps {
-  data?: Product[];
+  data?: Product[] | null;
 }
 
 const SectionGridFeatureItems: FC<SectionGridFeatureItemsProps> = ({
@@ -17,7 +17,7 @@ const SectionGridFeatureItems: FC<SectionGridFeatureItemsProps> = ({
       <div
         className={`grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 `}
       >
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <ProductCard data={item} key={index} />
         ))}
       </div>
