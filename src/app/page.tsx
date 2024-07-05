@@ -17,10 +17,8 @@ function PageHome({ searchParams }: { searchParams: { success: string } }) {
         <div className="py-24 border-t border-b lg:py-32 border-slate-200 dark:border-slate-700">
           <SectionHowItWork />
         </div>
-
-        <SectionGridFeatureItems />
-
         <SectionClientSay />
+        <SectionGridFeatureItems />
       </div>
     </div>
   );

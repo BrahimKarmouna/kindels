@@ -6,7 +6,7 @@ import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 function SectionIntro() {
   return (
     <div className="container mx-auto bg-[white]">
-      <div className="grid w-full grid-cols-6 py-8 px-2 md:h-[500px] gap-2">
+      <div className="grid w-full grid-cols-6 py-8 px-2 md:h-[700px] gap-2">
         <div className="flex flex-col justify-center col-span-6 md:col-span-3">
           <div className="">
             <Heading fontClass="text-4xl md:text-5xl font-bold my-0">

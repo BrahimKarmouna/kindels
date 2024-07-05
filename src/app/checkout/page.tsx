@@ -12,10 +12,12 @@ import ContactInfo from "./ContactInfo";
 import ShippingAddress from "./ShippingAddress";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 // import checkoutAction from "./checkoutAction";
 
 const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
   const [countSelected, setCountSelected] = useState(1);
+  const router = useRouter();
   // const ourAction = checkoutAction.bind(null, searchParams.id ?? null,countSelected)
   const renderProduct = (item: Product, index: number) => {
     const { image, price, name } = item;
@@ -100,7 +102,7 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
           <input type="hidden" value={searchParams.id} name="packId" />
           <input
             type="hidden"
-            value={PRODUCTS[searchParams.id as number].description}
+            value={PRODUCTS[(searchParams.id as number) - 1].description}
             name="packName"
           />
         </div>
@@ -123,6 +125,7 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
       );
 
       e.target.reset();
+      router.push("/?success=1");
     } catch (error) {
     } finally {
     }
