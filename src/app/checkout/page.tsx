@@ -152,7 +152,6 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
               <div className="flex justify-between pt-4 text-base font-semibold text-slate-900 dark:text-slate-200">
                 <span>La Total</span>
                 <span>
-                  $
                   {(
                     searchParams?.id &&
                     PRODUCTS[searchParams.id - 1].price * countSelected
