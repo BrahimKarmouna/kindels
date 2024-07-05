@@ -6,7 +6,6 @@ import NcInputNumber from "@/components/NcInputNumber";
 import Prices from "@/components/Prices";
 import { Product, PRODUCTS } from "@/data/data";
 import { useState } from "react";
-import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 
 import ContactInfo from "./ContactInfo";
 
@@ -16,7 +15,7 @@ import Link from "next/link";
 // import checkoutAction from "./checkoutAction";
 
 const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
-  const [countSelected, setCountSelected] = useState(0);
+  const [countSelected, setCountSelected] = useState(1);
   // const ourAction = checkoutAction.bind(null, searchParams.id ?? null,countSelected)
   const renderProduct = (item: Product, index: number) => {
     const { image, price, name } = item;
@@ -31,7 +30,11 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
             className="object-contain object-center w-full h-full"
             sizes="150px"
           />
-          <Link href="/product-detail" className="absolute inset-0"></Link>
+          <Link
+            //@ts-ignore
+            href={"/product-detail?id=" + (item.id - 1)}
+            className="absolute inset-0"
+          ></Link>
         </div>
 
         <div className="flex flex-col flex-1 ml-3 sm:ml-6">
@@ -39,89 +42,13 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
             <div className="flex justify-between ">
               <div className="flex-[1.5] ">
                 <h3 className="text-base font-semibold">
-                  <Link href="/product-detail">{name}</Link>
+                  {/*@ts-ignore */}
+                  <Link href={"/product-detail?id=" + (item.id - 1)}>
+                    {name}
+                  </Link>
                 </h3>
                 <div className="mt-1.5 sm:mt-2.5 flex text-sm text-slate-600 dark:text-slate-300">
-                  <div className="flex items-center space-x-1.5">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M7.01 18.0001L3 13.9901C1.66 12.6501 1.66 11.32 3 9.98004L9.68 3.30005L17.03 10.6501C17.4 11.0201 17.4 11.6201 17.03 11.9901L11.01 18.0101C9.69 19.3301 8.35 19.3301 7.01 18.0001Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M8.35 1.94995L9.69 3.28992"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M2.07 11.92L17.19 11.26"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3 22H16"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeMiterlimit="10"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M18.85 15C18.85 15 17 17.01 17 18.24C17 19.26 17.83 20.09 18.85 20.09C19.87 20.09 20.7 19.26 20.7 18.24C20.7 17.01 18.85 15 18.85 15Z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-
-                    <span>{`Black`}</span>
-                  </div>
                   <span className="mx-4 border-l border-slate-200 dark:border-slate-700 "></span>
-                  <div className="flex items-center space-x-1.5">
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M21 9V3H15"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M3 15V21H9"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M21 3L13.5 10.5"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M10.5 13.5L3 21"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-
-                    <span>{`2XL`}</span>
-                  </div>
                 </div>
 
                 <div className="relative flex justify-between w-full mt-3 sm:hidden">
@@ -171,6 +98,11 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
           <ContactInfo isActive />
           <input type="hidden" value={countSelected} name="count" />
           <input type="hidden" value={searchParams.id} name="packId" />
+          <input
+            type="hidden"
+            value={PRODUCTS[searchParams.id as number].description}
+            name="packName"
+          />
         </div>
 
         <div id="ShippingAddress" className="scroll-mt-24">
@@ -185,7 +117,7 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
     try {
       await emailjs.sendForm(
         "service_ukha5rj", // Replace with your service ID
-        "template_48q0skr", // Replace with your template ID
+        "template_3rw6lcp", // Replace with your template ID
         e.target,
         "D6rvZ-4VTYBkI0nkJ" // Replace with your user ID
       );
@@ -200,7 +132,7 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
       <main className="container py-16 lg:pb-28 lg:pt-20 ">
         <div className="mb-16">
           <h2 className="block text-2xl font-semibold sm:text-3xl lg:text-4xl ">
-            Checkout
+            Caisse
           </h2>
         </div>
 
@@ -210,73 +142,26 @@ const CheckoutPage = ({ searchParams }: { searchParams: { id?: number } }) => {
           <div className="flex-shrink-0 my-10 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-slate-700 lg:my-0 lg:mx-10 xl:lg:mx-14 2xl:mx-16 "></div>
 
           <div className="w-full lg:w-[36%] ">
-            <h3 className="text-lg font-semibold">Order summary</h3>
+            <h3 className="text-lg font-semibold">Récapitulatif de commande</h3>
             <div className="mt-8 divide-y divide-slate-200/70 dark:divide-slate-700 ">
               {searchParams?.id &&
-                [PRODUCTS[searchParams.id]].map(renderProduct)}
+                [PRODUCTS[searchParams.id - 1]].map(renderProduct)}
             </div>
 
             <div className="pt-6 mt-10 text-sm border-t text-slate-500 dark:text-slate-400 border-slate-200/70 dark:border-slate-700 ">
               <div className="flex justify-between pt-4 text-base font-semibold text-slate-900 dark:text-slate-200">
-                <span>Order total</span>
+                <span>La Total</span>
                 <span>
-                  ${searchParams?.id && PRODUCTS[searchParams.id].price} DH
+                  $
+                  {(
+                    searchParams?.id &&
+                    PRODUCTS[searchParams.id - 1].price * countSelected
+                  )?.toFixed(2)}{" "}
+                  DH
                 </span>
               </div>
             </div>
-            <ButtonPrimary className="w-full mt-8">Confirm order</ButtonPrimary>
-            <div className="flex items-center justify-center mt-5 text-sm text-slate-500 dark:text-slate-400">
-              <p className="relative block pl-5">
-                <svg
-                  className="w-4 h-4 absolute -left-1 top-0.5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <path
-                    d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M12 8V13"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M11.9945 16H12.0035"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                Learn more{` `}
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="##"
-                  className="font-medium underline text-slate-900 dark:text-slate-200"
-                >
-                  Taxes
-                </a>
-                <span>
-                  {` `}and{` `}
-                </span>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="##"
-                  className="font-medium underline text-slate-900 dark:text-slate-200"
-                >
-                  Shipping
-                </a>
-                {` `} infomation
-              </p>
-            </div>
+            <div className="flex items-center justify-center mt-5 text-sm text-slate-500 dark:text-slate-400"></div>
           </div>
         </div>
       </main>

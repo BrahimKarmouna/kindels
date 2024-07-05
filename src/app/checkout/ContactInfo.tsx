@@ -44,7 +44,7 @@ const ContactInfo: FC<Props> = ({ isActive }) => {
           </span>
           <div className="sm:ml-8">
             <h3 className="flex text-slate-700 dark:text-slate-300">
-              <span className="tracking-tight uppercase">CONTACT INFO</span>
+              <span className="tracking-tight uppercase">INFOS DE CONTACT</span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -68,10 +68,10 @@ const ContactInfo: FC<Props> = ({ isActive }) => {
           }`}
         >
           <div className="flex flex-wrap items-baseline justify-between">
-            <h3 className="text-lg font-semibold">Contact infomation</h3>
+            <h3 className="text-lg font-semibold">Informations de contact</h3>
           </div>
           <div className="max-w-lg">
-            <Label className="text-sm">Your phone number</Label>
+            <Label className="text-sm">Votre numéro de téléphone</Label>
             <Input
               required
               className="mt-1.5"
@@ -81,7 +81,7 @@ const ContactInfo: FC<Props> = ({ isActive }) => {
             />
           </div>
           <div className="max-w-lg">
-            <Label className="text-sm">Email address</Label>
+            <Label className="text-sm">Adresse e-mail</Label>
             <Input required className="mt-1.5" type={"email"} name="email" />
           </div>
         </div>

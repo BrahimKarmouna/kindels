@@ -19,22 +19,22 @@ const DEMO_DATA = [
     id: 2,
     img: <FcAddDatabase size={80} className="mb-2" />,
     imgDark: <FcAddDatabase size={80} className="mb-2" />,
-    title: "Add to bag",
-    desc: "Easily select the correct items and add them to the cart",
+    title: "Ajouter au panier",
+    desc: "Sélectionnez facilement les bons packs de bougies et ajoutez-les au panier",
   },
   {
     id: 3,
     img: <FcAssistant size={80} className="mb-2" />,
     imgDark: <FcAssistant size={80} className="mb-2" />,
-    title: "Order Confirmation",
-    desc: "Send the request, and our support team will contact you to confirm your order",
+    title: "Confirmation de commande",
+    desc: "Envoyez la demande, et notre équipe de support vous contactera pour confirmer votre commande de packs de bougies",
   },
   {
     id: 4,
     img: <FcShipped size={80} className="mb-2" />,
     imgDark: <FcShipped size={80} className="mb-2" />,
-    title: "Enjoy the product",
-    desc: "Have fun and enjoy your 5-star quality products",
+    title: "Profitez du produit",
+    desc: "Amusez-vous et profitez de vos packs de bougies de qualité 5 étoiles",
   },
 ];
 

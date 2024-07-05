@@ -3,10 +3,8 @@
 import Label from "@/components/Label/Label";
 import React, { FC } from "react";
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
-import ButtonSecondary from "@/shared/Button/ButtonSecondary";
+
 import Input from "@/shared/Input/Input";
-import Radio from "@/shared/Radio/Radio";
-import Select from "@/shared/Select/Select";
 
 interface Props {
   isActive: boolean;
@@ -64,7 +62,7 @@ const ShippingAddress: FC<Props> = ({ isActive }) => {
 
           <div className="sm:ml-8">
             <h3 className="flex text-slate-700 dark:text-slate-300">
-              <span className="uppercase">SHIPPING ADDRESS</span>
+              <span className="uppercase">ADRESSE DE LIVRAISON</span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -90,19 +88,19 @@ const ShippingAddress: FC<Props> = ({ isActive }) => {
           {/* ============ */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3">
             <div>
-              <Label className="text-sm">Nome</Label>
+              <Label className="text-sm">Nom</Label>
               <Input className="mt-1.5" name="nom" required />
             </div>
             <div>
               <Label className="text-sm">Prénom</Label>
-              <Input className="mt-1.5" name="prénom" required />
+              <Input className="mt-1.5" name="prenom" required />
             </div>
           </div>
 
           {/* ============ */}
           <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-3">
             <div className="flex-1">
-              <Label className="text-sm">Address</Label>
+              <Label className="text-sm">Adresse</Label>
               <Input
                 className="mt-1.5"
                 placeholder=""

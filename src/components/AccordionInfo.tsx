@@ -22,18 +22,12 @@ const AccordionInfo: FC<Props> = ({
     {
       name: "FAQ",
       content: `
-      <ul class="list-disc list-inside leading-7">
-      <li>All full-priced, unworn items, with tags attached and in their original packaging are eligible for return or exchange within 30 days of placing your order.</li>
-      <li>
-      Please note, packs must be returned in full. We do not accept partial returns of packs.
-      </li>
-      <li>
-      Want to know our full returns policies? Here you go.
-      </li>
-      <li>
-      Want more info about shipping, materials or care instructions? Here!
-      </li>
-    </ul>
+        <ul class="list-disc list-inside leading-7">
+          <li>Nous offrons une garantie de satisfaction de 15 jours sur tous les packs de bougies. Si vous n'êtes pas entièrement satisfait de votre achat, vous pouvez le retourner dans les 15 jours pour un remboursement complet ou un échange.</li>
+          <li>Dans le cas rare où votre pack de bougies arrive endommagé ou défectueux, veuillez nous contacter dans les 7 jours suivant la réception. Nous organiserons un remplacement ou un remboursement dès que possible.</li>
+          <li>Les remboursements seront traités dans un délai de 5 à 7 jours ouvrables après réception et inspection des articles retournés. Les remboursements seront effectués sur le mode de paiement original utilisé pour l'achat.</li>
+          <li>Les clients sont responsables des frais d'expédition de retour sauf si le retour est dû à notre erreur (par exemple, mauvais article expédié, article endommagé).</li>
+        </ul>
       `,
     },
   ];
