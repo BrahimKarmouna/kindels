@@ -1,7 +1,7 @@
 import { SocialType } from "@/shared/SocialsShare/SocialsShare";
 import React, { FC } from "react";
-import facebook from "@/images/socials/facebook.svg";
-import instagram from "@/images/socials/instagram.svg";
+import tiktok from "@/images/tiktok.svg";
+import instagram from "@/images/instagram.svg";
 import Image from "next/image";
 
 export interface SocialsList1Props {
@@ -9,8 +9,8 @@ export interface SocialsList1Props {
 }
 
 const socials: SocialType[] = [
-  { name: "Facebook", icon: facebook, href: "#" },
-  { name: "Instagram", icon: instagram, href: "https://www.instagram.com/raihanacandles?igsh=MWw3OWh3ZGpma3NxNg==" },
+  { name: "Tiktok", icon: tiktok, href: "https://www.tiktok.com/@raihanacandles?_t=8nk3UWobJFV&_r=1" },
+  { name: "Instagram", icon: instagram, href: "https://www.instagram.com/raihanacandles/?igsh=MWw3OWh3ZGpma3NxNg%3D%3D" },
 ];
 
 const SocialsList1: FC<SocialsList1Props> = ({ className = "space-y-3" }) => {

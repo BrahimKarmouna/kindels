@@ -15,7 +15,8 @@ const widgetMenus: WidgetFooterMenu[] = [
     id: "5",
     title: "Getting started",
     menus: [
-      { href: "/", label: "Accueil" },
+      // { href: "/", label: "Accueil" },
+      // { href: "/t", label: "Accuetil" },
       { href: "/contact", label: "Contact" },
     ],
   },
@@ -26,14 +27,14 @@ const Footer: React.FC = () => {
     return (
       <div
         key={index}
-        className="flex items-center w-full col-span-2 text-sm justify-evenly lg:col-span-2 md:ms-10 md:w-auto"
+        className="flex items-center w-full hi md:col-span-2 text-sm justify-evenly lg:col-span-2 md:ms-10 md:w-auto hidden md:block"
       >
         <ul className="flex items-center justify-between w-full mt-1">
           {menu.menus.map((item, index) => (
-            <li key={index}>
+            <li key={index} className="hidden md:blockhidden md:block">
               <Link
                 key={index}
-                className="text-neutral-6000 dark:text-neutral-300 hover:text-black dark:hover:text-white"
+                className="text-neutral-6000 dark:text-neutral-300 hover:text-black dark:hover:text-white "
                 href={item.href}
                 rel="noopener noreferrer"
               >

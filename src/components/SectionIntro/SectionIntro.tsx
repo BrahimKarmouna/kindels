@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Heading from "../Heading/Heading";
-import candle from "@/images/candles/1.jpg";
+import candle from "@/images/test.png";
 
 import ButtonPrimary from "@/shared/Button/ButtonPrimary";
 function SectionIntro() {
