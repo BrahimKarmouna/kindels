@@ -1,21 +1,17 @@
 import Label from "@/components/Label/Label";
 import React, { FC } from "react";
-import ButtonPrimary from "@/shared/Button/ButtonPrimary";
-import ButtonSecondary from "@/shared/Button/ButtonSecondary";
-import Checkbox from "@/shared/Checkbox/Checkbox";
+
 import Input from "@/shared/Input/Input";
 
 interface Props {
   isActive: boolean;
-  onOpenActive: () => void;
-  onCloseActive: () => void;
 }
 
-const ContactInfo: FC<Props> = ({ isActive, onCloseActive, onOpenActive }) => {
+const ContactInfo: FC<Props> = ({ isActive }) => {
   const renderAccount = () => {
     return (
-      <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden z-0">
-        <div className="flex flex-col sm:flex-row items-start p-6 ">
+      <div className="z-0 overflow-hidden border border-slate-200 dark:border-slate-700 rounded-xl">
+        <div className="flex flex-col items-start p-6 sm:flex-row ">
           <span className="hidden sm:block">
             <svg
               className="w-6 h-6 text-slate-700 dark:text-slate-400 mt-0.5"
@@ -47,8 +43,8 @@ const ContactInfo: FC<Props> = ({ isActive, onCloseActive, onOpenActive }) => {
             </svg>
           </span>
           <div className="sm:ml-8">
-            <h3 className=" text-slate-700 dark:text-slate-300 flex ">
-              <span className="uppercase tracking-tight">CONTACT INFO</span>
+            <h3 className="flex text-slate-700 dark:text-slate-300">
+              <span className="tracking-tight uppercase">CONTACT INFO</span>
               <svg
                 fill="none"
                 viewBox="0 0 24 24"
@@ -63,63 +59,30 @@ const ContactInfo: FC<Props> = ({ isActive, onCloseActive, onOpenActive }) => {
                 />
               </svg>
             </h3>
-            <div className="font-semibold mt-1 text-sm">
-              <span className="">Enrico Smith</span>
-              <span className="ml-3 tracking-tighter">+855 - 666 - 7744</span>
-            </div>
+            <div className="mt-1 text-sm font-semibold"></div>
           </div>
-          <button
-            className="py-2 px-4 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 mt-5 sm:mt-0 sm:ml-auto text-sm font-medium rounded-lg"
-            onClick={() => onOpenActive()}
-          >
-            Change
-          </button>
         </div>
         <div
           className={`border-t border-slate-200 dark:border-slate-700 px-6 py-7 space-y-4 sm:space-y-6 ${
             isActive ? "block" : "hidden"
           }`}
         >
-          <div className="flex justify-between flex-wrap items-baseline">
+          <div className="flex flex-wrap items-baseline justify-between">
             <h3 className="text-lg font-semibold">Contact infomation</h3>
-            <span className="block text-sm my-1 md:my-0">
-              Do not have an account?{` `}
-              <a href="##" className="text-primary-500 font-medium">
-                Log in
-              </a>
-            </span>
           </div>
           <div className="max-w-lg">
             <Label className="text-sm">Your phone number</Label>
-            <Input className="mt-1.5" defaultValue={"+808 xxx"} type={"tel"} />
+            <Input
+              required
+              className="mt-1.5"
+              name="phone"
+              placeholder={"+212 xxx"}
+              type={"tel"}
+            />
           </div>
           <div className="max-w-lg">
             <Label className="text-sm">Email address</Label>
-            <Input className="mt-1.5" type={"email"} />
-          </div>
-          <div>
-            <Checkbox
-              className="!text-sm"
-              name="uudai"
-              label="Email me news and offers"
-              defaultChecked
-            />
-          </div>
-
-          {/* ============ */}
-          <div className="flex flex-col sm:flex-row pt-6">
-            <ButtonPrimary
-              className="sm:!px-7 shadow-none"
-              onClick={() => onCloseActive()}
-            >
-              Save and next to Shipping
-            </ButtonPrimary>
-            <ButtonSecondary
-              className="mt-3 sm:mt-0 sm:ml-3"
-              onClick={() => onCloseActive()}
-            >
-              Cancel
-            </ButtonSecondary>
+            <Input required className="mt-1.5" type={"email"} name="email" />
           </div>
         </div>
       </div>

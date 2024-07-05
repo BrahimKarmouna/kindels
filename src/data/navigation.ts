@@ -22,7 +22,7 @@ export const MEGAMENU_TEMPLATES: NavItemType[] = [
       { id: ncNanoId(), href: "/collection", name: "Category Page 1" },
       { id: ncNanoId(), href: "/collection-2", name: "Category Page 2" },
       { id: ncNanoId(), href: "/product-detail", name: "Product Page 1" },
-      { id: ncNanoId(), href: "/product-detail-2", name: "Product Page 2" },
+
       { id: ncNanoId(), href: "/cart", name: "Cart Page" },
       { id: ncNanoId(), href: "/checkout", name: "Checkout Page" },
     ],
@@ -96,11 +96,7 @@ const OTHER_PAGE_CHILD: NavItemType[] = [
         href: "/product-detail",
         name: "Product detail 1",
       },
-      {
-        id: ncNanoId(),
-        href: "/product-detail-2",
-        name: "Product detail 2",
-      },
+
     ],
   },
   {

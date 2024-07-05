@@ -10,19 +10,13 @@ import Select from "@/shared/Select/Select";
 
 interface Props {
   isActive: boolean;
-  onCloseActive: () => void;
-  onOpenActive: () => void;
 }
 
-const ShippingAddress: FC<Props> = ({
-  isActive,
-  onCloseActive,
-  onOpenActive,
-}) => {
+const ShippingAddress: FC<Props> = ({ isActive }) => {
   const renderShippingAddress = () => {
     return (
       <div className="border border-slate-200 dark:border-slate-700 rounded-xl ">
-        <div className="p-6 flex flex-col sm:flex-row items-start">
+        <div className="flex flex-col items-start p-6 sm:flex-row">
           <span className="hidden sm:block">
             <svg
               className="w-6 h-6 text-slate-700 dark:text-slate-400 mt-0.5"
@@ -69,7 +63,7 @@ const ShippingAddress: FC<Props> = ({
           </span>
 
           <div className="sm:ml-8">
-            <h3 className=" text-slate-700 dark:text-slate-300 flex ">
+            <h3 className="flex text-slate-700 dark:text-slate-300">
               <span className="uppercase">SHIPPING ADDRESS</span>
               <svg
                 fill="none"
@@ -85,18 +79,8 @@ const ShippingAddress: FC<Props> = ({
                 />
               </svg>
             </h3>
-            <div className="font-semibold mt-1 text-sm">
-              <span className="">
-                {`St. Paul's Road, Norris, SD 57560, Dakota, USA`}
-              </span>
-            </div>
+            <div className="mt-1 text-sm font-semibold"></div>
           </div>
-          <button
-            className="py-2 px-4 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 mt-5 sm:mt-0 sm:ml-auto text-sm font-medium rounded-lg"
-            onClick={onOpenActive}
-          >
-            Change
-          </button>
         </div>
         <div
           className={`border-t border-slate-200 dark:border-slate-700 px-6 py-7 space-y-4 sm:space-y-6 ${
@@ -104,99 +88,44 @@ const ShippingAddress: FC<Props> = ({
           }`}
         >
           {/* ============ */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3">
             <div>
-              <Label className="text-sm">First name</Label>
-              <Input className="mt-1.5" defaultValue="Cole" />
+              <Label className="text-sm">Nome</Label>
+              <Input className="mt-1.5" name="nom" required />
             </div>
             <div>
-              <Label className="text-sm">Last name</Label>
-              <Input className="mt-1.5" defaultValue="Enrico " />
+              <Label className="text-sm">Prénom</Label>
+              <Input className="mt-1.5" name="prénom" required />
             </div>
           </div>
 
           {/* ============ */}
-          <div className="sm:flex space-y-4 sm:space-y-0 sm:space-x-3">
+          <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-3">
             <div className="flex-1">
               <Label className="text-sm">Address</Label>
               <Input
                 className="mt-1.5"
                 placeholder=""
-                defaultValue={"123, Dream Avenue, USA"}
+                name="address"
+                required
                 type={"text"}
               />
             </div>
-            <div className="sm:w-1/3">
-              <Label className="text-sm">Apt, Suite *</Label>
-              <Input className="mt-1.5" defaultValue="55U - DD5 " />
+          </div>
+
+          {/* ============ */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-3">
+            <div>
+              <Label className="text-sm">Ville</Label>
+              <Input className="mt-1.5" required name="ville" />
             </div>
           </div>
 
           {/* ============ */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
-            <div>
-              <Label className="text-sm">City</Label>
-              <Input className="mt-1.5" defaultValue="Norris" />
-            </div>
-            <div>
-              <Label className="text-sm">Country</Label>
-              <Select className="mt-1.5" defaultValue="United States ">
-                <option value="United States">United States</option>
-                <option value="United States">Canada</option>
-                <option value="United States">Mexico</option>
-                <option value="United States">Israel</option>
-                <option value="United States">France</option>
-                <option value="United States">England</option>
-                <option value="United States">Laos</option>
-                <option value="United States">China</option>
-              </Select>
-            </div>
-          </div>
-
-          {/* ============ */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-3">
-            <div>
-              <Label className="text-sm">State/Province</Label>
-              <Input className="mt-1.5" defaultValue="Texas" />
-            </div>
-            <div>
-              <Label className="text-sm">Postal code</Label>
-              <Input className="mt-1.5" defaultValue="2500 " />
-            </div>
-          </div>
-
-          {/* ============ */}
-          <div>
-            <Label className="text-sm">Address type</Label>
-            <div className="mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-              <Radio
-                label={`<span class="text-sm font-medium">Home <span class="font-light">(All Day Delivery)</span></span>`}
-                id="Address-type-home"
-                name="Address-type"
-                defaultChecked
-              />
-              <Radio
-                label={`<span class="text-sm font-medium">Office <span class="font-light">(Delivery <span class="font-medium">9 AM - 5 PM</span>)</span> </span>`}
-                id="Address-type-office"
-                name="Address-type"
-              />
-            </div>
-          </div>
-
-          {/* ============ */}
-          <div className="flex flex-col sm:flex-row pt-6">
-            <ButtonPrimary
-              className="sm:!px-7 shadow-none"
-              onClick={onCloseActive}
-            >
-              Save and next to Payment
+          <div className="flex flex-col pt-6 sm:flex-row">
+            <ButtonPrimary type="submit" className="sm:!px-7 shadow-none">
+              Confirmer
             </ButtonPrimary>
-            <ButtonSecondary
-              className="mt-3 sm:mt-0 sm:ml-3"
-              onClick={onCloseActive}
-            >
-              Cancel
-            </ButtonSecondary>
           </div>
         </div>
       </div>

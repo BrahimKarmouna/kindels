@@ -4,13 +4,6 @@ import { StaticImageData } from "next/image";
 
 //
 
-export interface ProductVariant {
-  id: number;
-  name: string;
-  thumbnail?: StaticImageData | string;
-  color?: string;
-  featuredImage: StaticImageData | string;
-}
 
 export interface Product {
   id: number;

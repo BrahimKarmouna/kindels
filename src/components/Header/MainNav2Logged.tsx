@@ -8,15 +8,14 @@ import CartDropdown from "./CartDropdown";
 export interface MainNav2LoggedProps {}
 
 const MainNav2Logged: FC<MainNav2LoggedProps> = () => {
-
   const renderContent = () => {
     return (
-      <div className="h-20 flex justify-between">
-        <div className="flex items-center lg:hidden flex-1">
+      <div className="flex justify-between h-20">
+        <div className="flex items-center flex-1 lg:hidden">
           <MenuBar />
         </div>
 
-        <div className="lg:flex-1 flex items-center">
+        <div className="flex items-center lg:flex-1">
           <Logo className="flex-shrink-0" />
         </div>
 
@@ -24,19 +23,18 @@ const MainNav2Logged: FC<MainNav2LoggedProps> = () => {
           <Navigation />
         </div>
 
-        <div className="flex-1 flex items-center justify-end text-slate-700 dark:text-slate-100">
-          <CartDropdown />
+        <div className="flex items-center justify-end flex-1 text-slate-700 dark:text-slate-100">
+          {/* <CartDropdown /> */}
         </div>
       </div>
     );
   };
 
   return (
-    <div className="nc-MainNav2Logged relative z-10 bg-white dark:bg-neutral-900 border-b border-slate-100 dark:border-slate-700">
+    <div className="relative z-10 bg-white border-b nc-MainNav2Logged dark:bg-neutral-900 border-slate-100 dark:border-slate-700">
       <div className="container">{renderContent()}</div>
     </div>
   );
 };
 
 export default MainNav2Logged;
-

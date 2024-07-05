@@ -21,10 +21,9 @@ import detail2JPG from "@/images/products/detail2.jpg";
 import { CartContext } from "@/utils/cart-provider";
 import detail3JPG from "@/images/products/detail3.jpg";
 import Policy from "./Policy";
-import NotifyAddTocart from "@/components/NotifyAddTocart";
+
 import Image from "next/image";
 import AccordionInfo from "@/components/AccordionInfo";
-import CartItem from "@/utils/CartItem";
 
 const LIST_IMAGES_DEMO = [detail1JPG, detail2JPG, detail3JPG];
 
@@ -37,56 +36,56 @@ const ProductDetailPage = ({
   const { dataFromStorage, setDataFromStorage } = useContext(CartContext);
 
   const [qualitySelected, setQualitySelected] = useState(1);
-
-  const notifyAddTocart = (
-    setDataFromCart:
-      | React.Dispatch<React.SetStateAction<CartItem[]>>
-      | undefined,
-    dataFromStorage: CartItem[] | undefined
-  ) => {
-    if (
-      !dataFromStorage?.find(
-        (x) =>
-          x.product.description === PRODUCTS[searchParams.id ?? 0].description
-      )
-    ) {
-      setDataFromCart &&
-        setDataFromCart((prevCart) =>
-          prevCart
-            ? [
-                ...prevCart,
-                {
-                  count: qualitySelected,
-                  product: PRODUCTS[searchParams.id ?? 0],
-                },
-              ]
-            : []
-        );
-      dataFromStorage &&
-        localStorage.setItem(
-          "cart",
-          JSON.stringify([
-            ...dataFromStorage,
-            {
-              count: qualitySelected,
-              product: PRODUCTS[searchParams.id ?? 0],
-            },
-          ])
-        );
-      toast.custom(
-        (t) => (
-          <NotifyAddTocart
-            product={PRODUCTS[searchParams.id ?? 0]}
-            index={searchParams.id ?? 0}
-            productImage={image}
-            qualitySelected={qualitySelected}
-            show={t.visible}
-          />
-        ),
-        { position: "top-right", id: "nc-product-notify", duration: 3000 }
-      );
-    }
-  };
+  //todo
+  // const notifyAddTocart = (
+  //   setDataFromCart:
+  //     | React.Dispatch<React.SetStateAction<CartItem[]>>
+  //     | undefined,
+  //   dataFromStorage: CartItem[] | undefined
+  // ) => {
+  //   if (
+  //     !dataFromStorage?.find(
+  //       (x) =>
+  //         x.product.description === PRODUCTS[searchParams.id ?? 0].description
+  //     )
+  //   ) {
+  //     setDataFromCart &&
+  //       setDataFromCart((prevCart) =>
+  //         prevCart
+  //           ? [
+  //               ...prevCart,
+  //               {
+  //                 count: qualitySelected,
+  //                 product: PRODUCTS[searchParams.id ?? 0],
+  //               },
+  //             ]
+  //           : []
+  //       );
+  //     dataFromStorage &&
+  //       localStorage.setItem(
+  //         "cart",
+  //         JSON.stringify([
+  //           ...dataFromStorage,
+  //           {
+  //             count: qualitySelected,
+  //             product: PRODUCTS[searchParams.id ?? 0],
+  //           },
+  //         ])
+  //       );
+  //     toast.custom(
+  //       (t) => (
+  //         <NotifyAddTocart
+  //           product={PRODUCTS[searchParams.id ?? 0]}
+  //           index={searchParams.id ?? 0}
+  //           productImage={image}
+  //           qualitySelected={qualitySelected}
+  //           show={t.visible}
+  //         />
+  //       ),
+  //       { position: "top-right", id: "nc-product-notify", duration: 3000 }
+  //     );
+  //   }
+  // };
 
   const renderStatus = () => {
     if (!status) {
@@ -182,7 +181,14 @@ const ProductDetailPage = ({
           </div>
           <ButtonPrimary
             className="flex-1 flex-shrink-0"
-            onClick={() => notifyAddTocart(setDataFromStorage, dataFromStorage)}
+            // onClick={() => notifyAddTocart(setDataFromStorage, dataFromStorage)}
+            // @ts-ignore
+            href={
+              "/checkout?id=" +
+              PRODUCTS[searchParams.id ?? 0].id +
+              "&count=" +
+              qualitySelected
+            }
             disabled={
               !!dataFromStorage?.find(
                 (x) =>
@@ -192,15 +198,15 @@ const ProductDetailPage = ({
             }
           >
             <BagIcon className="hidden sm:inline-block w-5 h-5 mb-0.5" />
-            {!dataFromStorage?.find(
+            {/* {!dataFromStorage?.find(
               (x) =>
                 x.product.description ===
                 PRODUCTS[searchParams.id ?? 0].description
             ) ? (
-              <span className="ml-3">Add to cart</span>
             ) : (
               <span className="ml-3 ">Added</span>
-            )}
+            )} */}
+            <span className="ml-3">Acheter Maintenant</span>
           </ButtonPrimary>
         </div>
 
