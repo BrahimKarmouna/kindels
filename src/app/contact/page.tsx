@@ -68,10 +68,8 @@ const PageContact = () => {
                 </div>
               ))}
               <div>
-                <h3 className="text-sm font-semibold tracking-wider uppercase dark:text-neutral-200">
-                  🌏 RÉSEAUX SOCIAUX
-                </h3>
-                <SocialsList className="mt-2" />
+              
+               
               </div>
             </div>
             <div>

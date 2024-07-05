@@ -4,7 +4,7 @@ import { Popover, Transition } from "@/app/headlessui";
 import { avatarImgs } from "@/contains/fakeData";
 import { Fragment } from "react";
 import Avatar from "@/shared/Avatar/Avatar";
-import SwitchDarkMode2 from "@/shared/SwitchDarkMode/SwitchDarkMode2";
+
 import Link from "next/link";
 
 export default function AvatarDropdown() {
@@ -215,7 +215,7 @@ export default function AvatarDropdown() {
                           <p className="text-sm font-medium ">{"Dark theme"}</p>
                         </div>
                       </div>
-                      <SwitchDarkMode2 />
+                    
                     </div>
 
                     {/* ------------------ 2 --------------------- */}
