@@ -14,7 +14,7 @@ import {
 } from "@heroicons/react/24/outline";
 import IconDiscount from "@/components/IconDiscount";
 import Prices from "@/components/Prices";
-import toast from "react-hot-toast";
+
 import SectionSliderProductCard from "@/components/SectionSliderProductCard";
 import detail1JPG from "@/images/products/detail1.jpg";
 import detail2JPG from "@/images/products/detail2.jpg";
@@ -33,7 +33,7 @@ const ProductDetailPage = ({
   searchParams: { id?: number };
 }) => {
   const { status, image } = PRODUCTS[searchParams.id ?? 0];
-  const { dataFromStorage, setDataFromStorage } = useContext(CartContext);
+  const { dataFromStorage } = useContext(CartContext);
 
   const [qualitySelected, setQualitySelected] = useState(1);
   //todo
@@ -284,7 +284,7 @@ const ProductDetailPage = ({
 
           {/* OTHER SECTION */}
           <SectionSliderProductCard
-            heading="Customers also purchased"
+            heading="Les clients ont également acheté"
             subHeading=""
             headingFontClassName="text-2xl font-semibold"
             headingClassName="mb-10 text-neutral-900 dark:text-neutral-50"

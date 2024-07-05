@@ -19,7 +19,7 @@ function SectionIntro() {
               <ButtonPrimary
                 className="flex justify-center nc-SectionHero2Item__button dark:bg-slate-900 "
                 sizeClass="py-4 px-4 "
-                href={"/AboutUs"}
+                href={"#acheterMaintenant"}
               >
                 <span>Achetez Maintenant</span>
               </ButtonPrimary>
