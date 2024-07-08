@@ -8,7 +8,9 @@ import {
 import VectorImg from "@/images/VectorHIW.svg";
 import Badge from "@/shared/Badge/Badge";
 import Image from "next/image";
-
+import { TbHandClick } from "react-icons/tb"
+import { MdOutlineSupportAgent } from "react-icons/md";
+import { MdLocalShipping } from "react-icons/md";
 export interface SectionHowItWorkProps {
   className?: string;
   data?: (typeof DEMO_DATA)[0][];
@@ -17,21 +19,21 @@ export interface SectionHowItWorkProps {
 const DEMO_DATA = [
   {
     id: 2,
-    img: <FcAddDatabase size={80} className="mb-2" />,
+    img: <TbHandClick  size={80} className="mb-2" />,
     imgDark: <FcAddDatabase size={80} className="mb-2" />,
-    title: "Ajouter au panier",
-    desc: "Sélectionnez facilement les bons packs de bougies et ajoutez-les au panier",
+    title: "Sélectionnez le produit",
+    desc: "Sélectionnez le produit que vous souhaitez acheter parmi les options disponibles.",
   },
   {
     id: 3,
-    img: <FcAssistant size={80} className="mb-2" />,
+    img: <MdOutlineSupportAgent  size={80} className="mb-2" />,
     imgDark: <FcAssistant size={80} className="mb-2" />,
     title: "Confirmation de commande",
     desc: "Envoyez la demande, et notre équipe de support vous contactera pour confirmer votre commande de packs de bougies",
   },
   {
     id: 4,
-    img: <FcShipped size={80} className="mb-2" />,
+    img: <MdLocalShipping  size={80} className="mb-2" />,
     imgDark: <FcShipped size={80} className="mb-2" />,
     title: "Profitez du produit",
     desc: "Amusez-vous et profitez de vos packs de bougies de qualité 5 étoiles",
@@ -65,7 +67,7 @@ const SectionHowItWork: FC<SectionHowItWorkProps> = ({
                     : index === 1
                     ? "indigo"
                     : index === 2
-                    ? "yellow"
+                    ? "green"
                     : "purple"
                 }
               />

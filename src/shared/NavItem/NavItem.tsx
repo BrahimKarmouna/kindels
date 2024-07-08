@@ -1,6 +1,5 @@
 import React, { FC, ReactNode } from "react";
 import twFocusClass from "@/utils/twFocusClass";
-import SwitchDarkMode from "../SwitchDarkMode/SwitchDarkMode";
 
 export interface NavItemProps {
   className?: string;
