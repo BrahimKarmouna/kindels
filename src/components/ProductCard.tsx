@@ -1,14 +1,13 @@
 "use client";
 
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useState } from "react";
 import Prices from "./Prices";
-import { Product, PRODUCTS } from "@/data/data";
+import { Product } from "@/data/data";
 import { StarIcon } from "@heroicons/react/24/solid";
-import ModalQuickView from "./ModalQuickView";
+
 import ProductStatus from "./ProductStatus";
 import Link from "next/link";
 import NcImage from "@/shared/NcImage/NcImage";
-import { CartContext } from "@/utils/cart-provider";
 
 export interface ProductCardProps {
   className?: string;
@@ -18,8 +17,8 @@ export interface ProductCardProps {
 
 const ProductCard: FC<ProductCardProps> = ({
   className = "",
-  data 
-}:ProductCardProps) => {
+  data,
+}: ProductCardProps) => {
   const { name, price, description, status, image, rating, numberOfReviews } =
     data;
 
@@ -30,10 +29,13 @@ const ProductCard: FC<ProductCardProps> = ({
       <div
         className={`nc-ProductCard relative flex flex-col bg-transparent ${className}`}
       >
-        <Link href={`/product-detail?id=${data.id-1}`} className="absolute inset-0"></Link>
+        <Link
+          href={`/product-detail?id=${data.id - 1}`}
+          className="absolute inset-0"
+        ></Link>
 
         <div className="relative flex-shrink-0 overflow-hidden bg-slate-50 dark:bg-slate-300 rounded-3xl z-1 group">
-          <Link href={`/product-detail?id=${data.id-1}`} className="block">
+          <Link href={`/product-detail?id=${data.id - 1}`} className="block">
             <NcImage
               containerClassName="flex aspect-w-11 aspect-h-12 w-full h-0"
               src={image}
@@ -69,10 +71,6 @@ const ProductCard: FC<ProductCardProps> = ({
       </div>
 
       {/* QUICKVIEW */}
-      <ModalQuickView
-        show={showModalQuickView}
-        onCloseModalQuickView={() => setShowModalQuickView(false)}
-      />
     </>
   );
 };
